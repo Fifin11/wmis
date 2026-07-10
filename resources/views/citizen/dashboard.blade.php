@@ -17,13 +17,13 @@
                         <span class="text-emerald-600">🌍</span> {{ __('Waste Collection Routes') }} Map
                     </h2>
                     <span class="text-[10px] bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full font-bold border border-emerald-200">
-                        🔄 Auto-updates: 30s
+                        🔄 {{ __('Auto-updates: 30s') }}
                     </span>
                 </div>
                 <!-- Leaflet container -->
                 <div id="live-map" class="w-full h-[450px] rounded-2xl border border-slate-200 z-10 shadow-inner"></div>
                 <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">
-                    ℹ️ <strong>Map Details:</strong> Green regions highlight planned municipal collections. Moving truck markers <span class="font-bold">🚚</span> represent live GPS positions of trucks. Double-click or click on the map to pin coords for the Incident Report form below.
+                    {{ __('Map Details: Green regions highlight planned municipal collections. Moving truck markers represent live GPS positions of trucks. Double-click or click on the map to pin coords for the Incident Report form below.') }}
                 </p>
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div class="bg-white p-5 rounded-3xl border border-emerald-100 shadow-sm">
                 <h3 class="text-sm font-extrabold text-slate-800 border-b border-slate-100 pb-3 mb-4 flex items-center justify-between">
                     <span class="flex items-center gap-1.5">🏆 {{ __('Leaderboard') }}</span>
-                    <span class="text-[10px] text-emerald-600 font-bold uppercase">Monthly Competition</span>
+                    <span class="text-[10px] text-emerald-600 font-bold uppercase">{{ __('Monthly Competition') }}</span>
                 </h3>
 
                 <div class="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
@@ -50,7 +50,7 @@
                             <span class="text-xs font-black text-slate-850 whitespace-nowrap">{{ $row->points }} Eco-pts</span>
                         </div>
                     @empty
-                        <p class="text-xs text-slate-400 text-center py-6">No leaderboard logs recorded this month.</p>
+                        <p class="text-xs text-slate-400 text-center py-6">{{ __('No leaderboard logs recorded this month.') }}</p>
                     @endforelse
                 </div>
 
@@ -59,7 +59,7 @@
                     @if(Auth::user()->role === 'Citizen')
                         <div class="border-t border-slate-100 pt-4 mt-4 space-y-3">
                             <div class="text-xs text-slate-500 flex justify-between items-center">
-                                <span>Your points: <strong class="text-emerald-700 text-sm">{{ $myPoints }} pts</strong></span>
+                                <span>{{ __('Your points:') }} <strong class="text-emerald-700 text-sm">{{ $myPoints }} pts</strong></span>
                                 @if($hasSubmittedToday)
                                     <span class="px-2 py-0.5 text-[9px] font-black rounded-full bg-amber-100 text-amber-800 border border-amber-200">⏳ Limit reached today</span>
                                 @endif
@@ -69,11 +69,11 @@
                                 <form action="{{ route('citizen.recycle.claim') }}" method="POST" class="space-y-2">
                                     @csrf
                                     <textarea name="description" required minlength="20" maxlength="1000"
-                                        placeholder="Describe what you recycled (e.g. 2kg plastic bottles, 3 cardboard boxes...)&#10;Min. 20 characters required."
+                                        placeholder="{{ __('Describe what you recycled (e.g. 2kg plastic bottles, 3 cardboard boxes...)\nMin. 20 characters required.') }}"
                                         rows="3"
                                         class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500/30 focus:border-emerald-500 resize-none"></textarea>
                                     <div class="flex items-center gap-2">
-                                        <label class="text-[10px] font-bold text-slate-500 shrink-0">Claim Pts:</label>
+                                        <label class="text-[10px] font-bold text-slate-500 shrink-0">{{ __('Claim Pts:') }}</label>
                                         <select name="claimed_points" class="flex-1 px-2 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold focus:outline-none focus:ring-1 focus:ring-emerald-500/30">
                                             <option value="5">5 pts — Small batch (e.g. 1–2 items)</option>
                                             <option value="10">10 pts — Medium bag</option>
@@ -84,14 +84,14 @@
                                     </div>
                                     <button type="submit"
                                         class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-650 text-white text-xs font-extrabold rounded-xl transition-all shadow-md cursor-pointer">
-                                        🌱 Submit Recycling Claim for Review
+                                        🌱 {{ __('Submit Recycling Claim for Review') }}
                                     </button>
                                 </form>
-                                <p class="text-[9px] text-slate-400 text-center leading-normal">Claims are reviewed by a municipal officer before points are awarded. One submission per day.</p>
+                                <p class="text-[9px] text-slate-400 text-center leading-normal">{{ __('Claims are reviewed by a municipal officer before points are awarded. One submission per day.') }}</p>
                             @else
                                 <div class="text-center py-3 bg-amber-50/50 border border-amber-100 rounded-xl">
-                                    <p class="text-xs font-bold text-amber-700">⏳ Today's claim submitted!</p>
-                                    <p class="text-[10px] text-amber-600 mt-1">Check your submission status below. Come back tomorrow to submit another.</p>
+                                    <p class="text-xs font-bold text-amber-700">⏳ {{ __("Today's claim submitted!") }}</p>
+                                    <p class="text-[10px] text-amber-600 mt-1">{{ __('Check your submission status below. Come back tomorrow to submit another.') }}</p>
                                 </div>
                             @endif
 
@@ -116,7 +116,7 @@
                     @endif
                 @else
                     <p class="text-[10px] text-slate-400 text-center mt-3 border-t border-slate-100 pt-3">
-                        🔐 <a href="{{ route('login') }}" class="text-emerald-600 font-bold hover:underline">Log in as citizen</a> to submit recycling claims.
+                        🔐 {{ __('Log in as citizen to submit recycling claims.') }}
                     </p>
                 @endauth
             </div>
@@ -138,7 +138,7 @@
                             <span class="block text-[9px] text-slate-400 text-right mt-1.5">{{ $ann->published_at }}</span>
                         </div>
                     @empty
-                        <p class="text-xs text-slate-400 text-center py-6">No broadcasts posted by the municipality.</p>
+                        <p class="text-xs text-slate-400 text-center py-6">{{ __('No broadcasts posted by the municipality.') }}</p>
                     @endforelse
                 </div>
             </div>
@@ -161,7 +161,7 @@
                     @csrf
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Incident Category</label>
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Incident Category') }}</label>
                         <select name="issue_type" required 
                             class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                             <option value="Missed Pickup">{{ __('Missed Pickup') }}</option>
@@ -172,32 +172,32 @@
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Latitude Coords</label>
-                            <input type="text" id="report_lat" name="location_lat" required readonly placeholder="Double-click map"
+                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Latitude Coords') }}</label>
+                            <input type="text" id="report_lat" name="location_lat" required readonly placeholder="{{ __('Double-click map') }}"
                                 class="w-full px-3.5 py-2.5 bg-slate-100 border border-slate-200 rounded-xl text-xs font-mono text-slate-500 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Longitude Coords</label>
-                            <input type="text" id="report_lng" name="location_lng" required readonly placeholder="Double-click map"
+                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Longitude Coords') }}</label>
+                            <input type="text" id="report_lng" name="location_lng" required readonly placeholder="{{ __('Double-click map') }}"
                                 class="w-full px-3.5 py-2.5 bg-slate-100 border border-slate-200 rounded-xl text-xs font-mono text-slate-500 focus:outline-none">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Upload Evidence Photo (.jpg / .png only, Max 5MB)</label>
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Upload Evidence Photo (.jpg / .png only, Max 5MB)') }}</label>
                         <input type="file" name="image" accept=".jpg,.jpeg,.png"
                             class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-[11px] file:font-black file:uppercase file:bg-emerald-50 file:text-emerald-800 hover:file:bg-emerald-100 file:cursor-pointer">
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Describe Incident</label>
-                        <textarea name="description" rows="3" placeholder="Provide street coordinates, landmarks, or details..."
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Describe Incident') }}</label>
+                        <textarea name="description" rows="3" placeholder="{{ __('Provide street coordinates, landmarks, or details...') }}"
                             class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"></textarea>
                     </div>
 
                     <button type="submit" 
                         class="w-full py-3.5 bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm rounded-xl transition-all shadow-md cursor-pointer">
-                        🚨 File Incident Report
+                        🚨 {{ __('File Incident Report') }}
                     </button>
                 </form>
             </div>
@@ -207,8 +207,7 @@
         <div class="bg-white p-6 rounded-3xl border border-emerald-100 shadow-sm flex flex-col justify-between">
             <div>
                 <h2 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
-                    <span class="text-emerald-600">📋</span> Your Reported Incidents
-                </h2>
+                        <span class="text-emerald-600">📋</span> {{ __('Your Reported Incidents') }}
                 
                 @auth
                     <div class="space-y-4 max-h-[350px] overflow-y-auto pr-1">
@@ -219,23 +218,23 @@
                                         <span class="font-bold text-slate-700">Ref: INC-{{ $report->id }}</span>
                                         <span class="px-2 py-0.5 rounded text-[8px] font-bold bg-slate-200 text-slate-700 uppercase">{{ $report->issue_type }}</span>
                                     </div>
-                                    <p class="text-slate-500 leading-normal">{{ $report->description ?? 'No details provided.' }}</p>
-                                    <span class="block text-[9px] text-slate-400">Filed: {{ $report->created_at->diffForHumans() }}</span>
+                                    <p class="text-slate-500 leading-normal">{{ $report->description ?? __('No details provided.') }}</p>
+                                    <span class="block text-[9px] text-slate-400">{{ __('Filed:') }} {{ $report->created_at->diffForHumans() }}</span>
                                 </div>
                                 <span class="px-2.5 py-1 rounded-full text-[9px] font-black uppercase {{ $report->status == 'Open' ? 'bg-amber-100 text-amber-800 border border-amber-300/40' : ($report->status == 'Investigating' ? 'bg-indigo-150 text-indigo-850' : 'bg-emerald-100 text-emerald-800') }}">
                                     {{ $report->status }}
                                 </span>
                             </div>
                         @empty
-                            <p class="text-xs text-slate-400 text-center py-10">You have not filed any reports yet.</p>
+                            <p class="text-xs text-slate-400 text-center py-10">{{ __('You have not filed any reports yet.') }}</p>
                         @endforelse
                     </div>
                 @else
                     <div class="flex-1 flex flex-col items-center justify-center text-center p-8">
                         <span class="text-4xl mb-3">🔒</span>
-                        <h4 class="font-bold text-slate-700 text-sm">Account Required</h4>
-                        <p class="text-xs text-slate-400 max-w-xs mt-1 leading-normal">Please sign in to view your filed incidents and track their verification progress in real-time.</p>
-                        <a href="{{ route('login') }}" class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl text-xs font-bold mt-4 border border-emerald-100/60 transition-colors">🔐 Sign In Now</a>
+                        <h4 class="font-bold text-slate-700 text-sm">{{ __('Account Required') }}</h4>
+                        <p class="text-xs text-slate-400 max-w-xs mt-1 leading-normal">{{ __('Please sign in to view your filed incidents and track their verification progress in real-time.') }}</p>
+                        <a href="{{ route('login') }}" class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl text-xs font-bold mt-4 border border-emerald-100/60 transition-colors">🔐 {{ __('Sign In Now') }}</a>
                     </div>
                 @endauth
             </div>

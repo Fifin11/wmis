@@ -1,7 +1,7 @@
 @extends('app')
 
-@section('role-title', 'System Administrator')
-@section('dashboard-title', __('Dashboard') . ': ' . __('Route Management') . ' & Logistics')
+@section('role-title', __('System Administrator'))
+@section('dashboard-title', __('Dashboard') . ': ' . __('Route Management') . ' & ' . __('Logistics'))
 
 @section('content')
 <div class="space-y-8 pb-12">
@@ -17,14 +17,14 @@
         </div>
         <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
             <div>
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Active Drivers</h3>
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">{{ __('Active Drivers') }}</h3>
                 <p class="text-3xl font-black text-slate-800 mt-2">{{ $activeDrivers }}</p>
             </div>
             <span class="text-4xl p-3 bg-amber-50 rounded-xl text-amber-600">🚚</span>
         </div>
         <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
             <div>
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Citizen Reports</h3>
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">{{ __('Citizen Reports') }}</h3>
                 <p class="text-3xl font-black text-slate-800 mt-2">{{ $totalReports }}</p>
             </div>
             <span class="text-4xl p-3 bg-rose-50 rounded-xl text-rose-600">🚨</span>
@@ -34,7 +34,7 @@
                 <span class="absolute top-3 right-3 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center text-[9px] font-black text-white animate-pulse">!</span>
             @endif
             <div>
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Pending Eco Claims</h3>
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">{{ __('Pending Eco Claims') }}</h3>
                 <p class="text-3xl font-black {{ $pendingRecyclingCount > 0 ? 'text-amber-600' : 'text-slate-800' }} mt-2">{{ $pendingRecyclingCount }}</p>
             </div>
             <span class="text-4xl p-3 bg-amber-50 rounded-xl">🌱</span>
@@ -48,57 +48,57 @@
         <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm flex flex-col justify-between">
             <div>
                 <h2 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
-                    <span class="text-emerald-600">➕</span> Create Collection Route
+                    <span class="text-emerald-600">➕</span> {{ __('Create Collection Route') }}
                 </h2>
                 
                 <form action="{{ route('admin.routes.store') }}" method="POST" class="space-y-4">
                     @csrf
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Route Name</label>
-                        <input type="text" name="route_name" required placeholder="e.g. Zone Alpha - Town Center" 
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Route Name') }}</label>
+                        <input type="text" name="route_name" required placeholder="{{ __('e.g. Zone Alpha - Town Center') }}" 
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Waste Category</label>
+                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Waste Category') }}</label>
                             <select name="waste_type" required 
                                 class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
-                                <option value="Organic">Organic 🍎</option>
-                                <option value="Plastic">Plastic 🥤</option>
-                                <option value="Paper">Paper 📦</option>
-                                <option value="Hazardous">Hazardous ⚠️</option>
+                                <option value="Organic">{{ __('Organic') }} 🍎</option>
+                                <option value="Plastic">{{ __('Plastic') }} 🥤</option>
+                                <option value="Paper">{{ __('Paper') }} 📦</option>
+                                <option value="Hazardous">{{ __('Hazardous') }} ⚠️</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Scheduled Day</label>
+                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Scheduled Day') }}</label>
                             <select name="scheduled_day" required 
                                 class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">{{ __('Monday') }}</option>
+                                <option value="Tuesday">{{ __('Tuesday') }}</option>
+                                <option value="Wednesday">{{ __('Wednesday') }}</option>
+                                <option value="Thursday">{{ __('Thursday') }}</option>
+                                <option value="Friday">{{ __('Friday') }}</option>
+                                <option value="Saturday">{{ __('Saturday') }}</option>
+                                <option value="Sunday">{{ __('Sunday') }}</option>
                             </select>
                         </div>
                     </div>
 
                     <div>
                         <div class="flex justify-between items-center mb-1.5">
-                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500">Zone Polygon Coordinates</label>
-                            <button type="button" onclick="clearDrawing()" class="text-[9px] font-bold text-rose-600 hover:underline">Clear Map Points</button>
+                            <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500">{{ __('Zone Polygon Coordinates') }}</label>
+                            <button type="button" onclick="clearDrawing()" class="text-[9px] font-bold text-rose-600 hover:underline">{{ __('Clear Map Points') }}</button>
                         </div>
-                        <textarea id="coords-text" name="zone_coordinates" readonly required placeholder="[]" rows="4"
+                        <textarea id="coords-text" name="zone_coordinates" readonly required placeholder="{{ __('[]') }}" rows="4"
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[11px] font-mono text-slate-500 focus:outline-none"></textarea>
-                        <p class="text-[10px] text-slate-400 mt-1 leading-normal">🗺️ <strong>How to draw:</strong> Click points on the map on the right to define the boundary vertices. A green polygon overlay will represent your active route path.</p>
+                        <p class="text-[10px] text-slate-400 mt-1 leading-normal">🗺️ <strong>{{ __('How to draw') }}:</strong> {{ __('Click points on the map on the right to define the boundary vertices. A green polygon overlay will represent your active route path.') }}</p>
                     </div>
 
                     <button type="submit" 
                         class="w-full py-3 bg-emerald-700 hover:bg-emerald-650 text-white font-bold text-sm rounded-xl transition-all shadow-md mt-2 cursor-pointer">
-                        💾 Save Route Path
+                        💾 {{ __('Save Route Path') }}
                     </button>
                 </form>
             </div>
@@ -108,7 +108,7 @@
         <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm lg:col-span-2 flex flex-col justify-between">
             <div>
                 <h2 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
-                    <span class="text-emerald-600">🗺️</span> Route Boundary Editor (Leaflet & OSM)
+                    <span class="text-emerald-600">🗺️</span> {{ __('Route Boundary Editor (Leaflet & OSM)') }}
                 </h2>
                 <div id="admin-map" class="w-full h-[400px] rounded-xl border border-slate-200 z-10"></div>
             </div>
@@ -127,14 +127,14 @@
                 </h2>
                 <!-- Search Filter -->
                 <form method="GET" class="flex gap-2">
-                    <input type="text" name="route_search" placeholder="Search routes..." value="{{ request('route_search') }}"
+                    <input type="text" name="route_search" placeholder="{{ __('Search routes...') }}" value="{{ request('route_search') }}"
                         class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                     <button type="submit" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg">
-                        🔍 Search
+                        🔍 {{ __('Search') }}
                     </button>
                     @if(request('route_search'))
                         <a href="?{{ http_build_query(request()->except('route_search')) }}" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold rounded-lg">
-                            ✕ Clear
+                            ✕ {{ __('Clear') }}
                         </a>
                     @endif
                 </form>
@@ -143,11 +143,11 @@
                 <table class="w-full text-left text-sm text-slate-500 border-collapse">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-200/80 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
-                            <th class="py-3.5 px-4">Route Name</th>
-                            <th class="py-3.5 px-4">Waste Category</th>
-                            <th class="py-3.5 px-4">Scheduled Day</th>
-                            <th class="py-3.5 px-4 text-center">Vertices</th>
-                            <th class="py-3.5 px-4 text-right">Action</th>
+                            <th class="py-3.5 px-4">{{ __('Route Name') }}</th>
+                            <th class="py-3.5 px-4">{{ __('Waste Category') }}</th>
+                            <th class="py-3.5 px-4">{{ __('Scheduled Day') }}</th>
+                            <th class="py-3.5 px-4 text-center">{{ __('Vertices') }}</th>
+                            <th class="py-3.5 px-4 text-right">{{ __('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
@@ -166,12 +166,12 @@
                                     @endif
                                 </td>
                                 <td class="py-3 px-4 text-slate-600 font-semibold">{{ $route->scheduled_day }}</td>
-                                <td class="py-3 px-4 text-center font-mono text-xs">{{ count($route->zone_coordinates) }} points</td>
+                                <td class="py-3 px-4 text-center font-mono text-xs">{{ count($route->zone_coordinates) }} {{ __('Vertices') }}</td>
                                 <td class="py-3 px-4 text-right">
                                     <form action="{{ route('admin.routes.destroy', $route->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this route? This will wipe associated logs.')" 
+                                        <button type="submit" onclick="return confirm('{{ __('Are you sure you want to delete this route? This will wipe associated logs.') }}')" 
                                             class="text-xs font-bold text-rose-600 hover:text-rose-800 hover:underline">
                                             🗑️ Remove
                                         </button>
@@ -180,7 +180,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="py-6 text-center text-slate-400">No active routes defined. Use the drawing tool above to add ones.</td>
+                                <td colspan="5" class="py-6 text-center text-slate-400">{{ __('No active routes defined. Use the drawing tool above to add ones.') }}</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -196,7 +196,7 @@
         <div id="assign-drivers" class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm flex flex-col justify-between">
             <div>
                 <h2 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
-                    <span class="text-emerald-600">📅</span> Driver Logistics Schedule
+                    <span class="text-emerald-600">📅</span> {{ __('Driver Logistics Schedule') }}
                 </h2>
                 
                 <!-- Driver assignment form -->
@@ -204,7 +204,7 @@
                     @csrf
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Select Route</label>
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Select Route') }}</label>
                         <select name="route_id" required 
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                             @foreach($routes as $route)
@@ -214,7 +214,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Select Truck Operator / Driver</label>
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Select Truck Operator / Driver') }}</label>
                         <select name="driver_id" required 
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                             @foreach($drivers as $driver)
@@ -224,31 +224,31 @@
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Assignment Date</label>
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Assignment Date') }}</label>
                         <input type="date" name="assigned_date" required min="{{ date('Y-m-d') }}"
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                     </div>
 
                     <button type="submit" 
                         class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold text-sm rounded-xl transition-all shadow-md cursor-pointer">
-                        🗓️ Assign Driver Duty
+                        🗓️ {{ __('Assign Driver Duty') }}
                     </button>
                 </form>
 
                 <!-- Current schedules list -->
                 <div class="border-t border-slate-100 pt-4">
-                    <span class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-2">Duty Assignments (Active)</span>
+                        <span class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-2">{{ __('Duty Assignments (Active)') }}</span>
                     <div class="space-y-3 max-h-[220px] overflow-y-auto pr-1">
                         @forelse($assignments as $assignment)
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-150 flex items-center justify-between text-xs hover:border-emerald-500/35 transition-all">
                                 <div>
                                     <h4 class="font-bold text-slate-800">{{ $assignment->route->route_name }}</h4>
-                                    <p class="text-[10px] text-slate-500 mt-0.5">Driver: {{ $assignment->driver->name }}</p>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">{{ __('Driver:') }} {{ $assignment->driver->name }}</p>
                                 </div>
                                 <span class="px-2 py-1 bg-white border border-slate-200 rounded-lg text-[9px] font-black text-slate-600">{{ $assignment->assigned_date }}</span>
                             </div>
                         @empty
-                            <p class="text-xs text-slate-400 text-center py-4">No driver assignments logged yet.</p>
+                            <p class="text-xs text-slate-400 text-center py-4">{{ __('No driver assignments logged yet.') }}</p>
                         @endforelse
                     </div>
                 </div>
@@ -265,32 +265,32 @@
         <!-- Add New Driver Form -->
         <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
             <h2 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
-                <span class="text-emerald-600">➕</span> Register New Driver
+                <span class="text-emerald-600">➕</span> {{ __('Register New Driver') }}
             </h2>
             <form action="{{ route('admin.drivers.store') }}" method="POST" class="space-y-4">
                 @csrf
                 <div>
-                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Full Name</label>
+                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Full Name') }}</label>
                     <input type="text" name="name" required placeholder="e.g. D. Bandara (Driver 03)"
                         class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Email Address</label>
+                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Email Address') }}</label>
                     <input type="email" name="email" required placeholder="driver@wmis.lk"
                         class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Contact Phone</label>
+                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Contact Phone') }}</label>
                     <input type="text" name="phone" placeholder="+94 7X XXX XXXX"
                         class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Temporary Password</label>
+                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Temporary Password') }}</label>
                     <input type="password" name="password" required minlength="8" placeholder="Min. 8 characters"
                         class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Confirm Password</label>
+                    <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Confirm Password') }}</label>
                     <input type="password" name="password_confirmation" required placeholder="Repeat password"
                         class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                 </div>
@@ -305,11 +305,11 @@
         <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm lg:col-span-2">
             <div class="flex items-center justify-between gap-2 mb-4 border-b border-slate-100 pb-3">
                 <h2 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
-                    <span class="text-emerald-600">👥</span> Driver Roster
+                    <span class="text-emerald-600">👥</span> {{ __('Driver Roster') }}
                 </h2>
                 <!-- Search Filter -->
                 <form method="GET" class="flex gap-2">
-                    <input type="text" name="driver_search" placeholder="Search drivers..." value="{{ request('driver_search') }}"
+                    <input type="text" name="driver_search" placeholder="{{ __('Search drivers...') }}" value="{{ request('driver_search') }}"
                         class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                     <button type="submit" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg">
                         🔍 Search
@@ -325,7 +325,7 @@
                 <table class="w-full text-left text-sm text-slate-500 border-collapse">
                     <thead>
                         <tr class="border-b border-slate-200/80 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
-                            <th class="py-3.5 px-4">Driver Name</th>
+                            <th class="py-3.5 px-4">{{ __('Driver Name') }}</th>
                             <th class="py-3.5 px-4">Email</th>
                             <th class="py-3.5 px-4">Phone</th>
                             <th class="py-3.5 px-4 text-right">Action</th>
@@ -341,16 +341,16 @@
                                     <form action="{{ route('admin.drivers.destroy', $driver->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Remove driver {{ $driver->name }}? This will also delete their trip logs and assignments.')"
+                                        <button type="submit" onclick="return confirm('{{ __('Remove driver :name? This will also delete their trip logs and assignments.', ['name' => $driver->name]) }}')"
                                             class="text-xs font-bold text-rose-600 hover:text-rose-800 hover:underline">
-                                            🗑️ Remove
+                                            🗑️ {{ __('Remove') }}
                                         </button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="py-6 text-center text-slate-400">No drivers registered. Add one using the form on the left.</td>
+                                <td colspan="4" class="py-6 text-center text-slate-400">{{ __('No drivers registered. Add one using the form on the left.') }}</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -397,7 +397,7 @@
                         </div>
                         @if($sub->admin_note)
                             <div class="text-[11px] text-slate-500 bg-white border border-slate-200 rounded-lg px-3 py-2 mt-1">
-                                <span class="font-bold">Admin Note:</span> {{ $sub->admin_note }}
+                                <span class="font-bold">{{ __('Admin Note:') }}</span> {{ $sub->admin_note }}
                             </div>
                         @endif
                     </div>
@@ -416,7 +416,7 @@
                             {{-- Reject with reason --}}
                             <form action="{{ route('admin.recycling.reject', $sub->id) }}" method="POST" class="space-y-2">
                                 @csrf
-                                <input type="text" name="admin_note" required placeholder="Rejection reason (required)"
+                                <input type="text" name="admin_note" required placeholder="{{ __('Rejection reason (required)') }}"
                                     class="w-full px-2.5 py-2 bg-white border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-rose-400">
                                 <button type="submit"
                                     onclick="return confirm('Reject this recycling submission?')"
@@ -428,7 +428,7 @@
                     @endif
                 </div>
             @empty
-                <div class="text-center py-8 text-slate-400 text-sm">No recycling submissions in the queue yet.</div>
+                <div class="text-center py-8 text-slate-400 text-sm">{{ __('No recycling submissions in the queue yet.') }}</div>
             @endforelse
         </div>
     </div>
@@ -447,25 +447,25 @@
                     @csrf
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">English Title</label>
-                        <input type="text" name="title_en" required placeholder="e.g. Garbage Schedule Alteration" 
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('English Title') }}</label>
+                        <input type="text" name="title_en" required placeholder="e.g. Garbage Schedule Alteration"
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Sinhala Title (සිංහල මාතෘකාව)</label>
-                        <input type="text" name="title_si" required placeholder="e.g. අපද්‍රව්‍ය එකතු කිරීමේ කාලසටහන වෙනස්වීම" 
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Sinhala Title') }} (සිංහල මාතෘකාව)</label>
+                        <input type="text" name="title_si" required placeholder="e.g. අපද්‍රව්‍ය එකතු කිරීමේ කාලසටහන වෙනස්වීම"
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">English Content</label>
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('English Content') }}</label>
                         <textarea name="content_en" required placeholder="Type English announcement details here..." rows="3"
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"></textarea>
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">Sinhala Content (සිංහල විස්තරය)</label>
+                        <label class="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5">{{ __('Sinhala Content') }} (සිංහල විස්තරය)</label>
                         <textarea name="content_si" required placeholder="සිංහල නිවේදනය මෙතන ලියන්න..." rows="3"
                             class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"></textarea>
                     </div>
@@ -489,9 +489,9 @@
                     <form method="GET" class="flex gap-2">
                         <select name="report_status" class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
                             <option value="">All Statuses</option>
-                            <option value="Open" {{ request('report_status') === 'Open' ? 'selected' : '' }}>Open</option>
-                            <option value="Investigating" {{ request('report_status') === 'Investigating' ? 'selected' : '' }}>Investigating</option>
-                            <option value="Resolved" {{ request('report_status') === 'Resolved' ? 'selected' : '' }}>Resolved</option>
+                            <option value="Open" {{ request('report_status') === 'Open' ? 'selected' : '' }}>{{ __('Open') }}</option>
+                            <option value="Investigating" {{ request('report_status') === 'Investigating' ? 'selected' : '' }}>{{ __('Investigating') }}</option>
+                            <option value="Resolved" {{ request('report_status') === 'Resolved' ? 'selected' : '' }}>{{ __('Resolved') }}</option>
                         </select>
                         <input type="text" name="report_search" placeholder="Search by type..." value="{{ request('report_search') }}"
                             class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">
@@ -510,7 +510,7 @@
                         <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl hover:border-emerald-500/40 transition-all flex flex-col sm:flex-row justify-between gap-4">
                             <div class="space-y-1.5 flex-1">
                                 <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="px-2 py-0.5 rounded text-[9px] font-black uppercase text-slate-700 bg-slate-200">Incident #{{ $report->id }}</span>
+                                    <span class="px-2 py-0.5 rounded text-[9px] font-black uppercase text-slate-700 bg-slate-200">{{ __('Incident #') }}{{ $report->id }}</span>
                                     @if($report->issue_type == 'Missed Pickup')
                                         <span class="px-2 py-0.5 rounded text-[9px] font-black uppercase text-amber-700 bg-amber-50 border border-amber-200/50">🗑️ Missed Pickup</span>
                                     @elseif($report->issue_type == 'Illegal Dumping')
@@ -519,7 +519,7 @@
                                         <span class="px-2 py-0.5 rounded text-[9px] font-black uppercase text-red-800 bg-red-50 border border-red-200/50">☢️ Hazardous Waste</span>
                                     @endif
                                 </div>
-                                <h4 class="font-bold text-slate-800 text-sm">Submitted By: {{ $report->citizen->name ?? 'Anonymous Citizen' }}</h4>
+                                <h4 class="font-bold text-slate-800 text-sm">{{ __('Submitted By:') }} {{ $report->citizen->name ?? __('Anonymous Citizen') }}</h4>
                                 <p class="text-xs text-slate-500 leading-normal">{{ $report->description ?? 'No description details provided.' }}</p>
                                 <div class="text-[10px] text-slate-400 flex flex-wrap gap-x-4 gap-y-1">
                                     <span>📍 Coords: {{ $report->location_lat }}, {{ $report->location_lng }}</span>
@@ -550,7 +550,7 @@
                             </div>
                         </div>
                     @empty
-                        <p class="text-xs text-slate-400 text-center py-8">Citizen report inbox is currently empty.</p>
+                        <p class="text-xs text-slate-400 text-center py-8">{{ __('Citizen report inbox is currently empty.') }}</p>
                     @endforelse
                 </div>
                 <!-- Pagination Links -->

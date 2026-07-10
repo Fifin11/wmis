@@ -45,7 +45,7 @@
                 <span class="text-3xl">🌿</span>
                 <div>
                     <div class="text-sm font-extrabold tracking-wider text-amber-400 uppercase">Rathnapura</div>
-                    <div class="text-[10px] text-emerald-300 font-medium tracking-widest uppercase">Waste Logistics</div>
+                    <div class="text-[10px] text-emerald-300 font-medium tracking-widest uppercase">{{ __('Waste Logistics') }}</div>
                 </div>
             </div>
             
@@ -56,26 +56,26 @@
                         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-emerald-850 hover:bg-emerald-800 text-white font-semibold transition-all shadow-md {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-800 border-l-4 border-amber-400' : 'opacity-85' }}">
                             <span>📊</span> {{ __('Dashboard') }}
                         </a>
-                        <div class="text-[10px] font-bold tracking-wider text-emerald-500 uppercase px-4 pt-4 pb-1">Administrative Functions</div>
+                        <div class="text-[10px] font-bold tracking-wider text-emerald-500 uppercase px-4 pt-4 pb-1">{{ __('Administrative Functions') }}</div>
                         <a href="#manage-routes" class="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-emerald-900 text-emerald-100 hover:text-white transition-all text-sm">
                             <span>🗺️</span> {{ __('Route Management') }}
                         </a>
                         <a href="#assign-drivers" class="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-emerald-900 text-emerald-100 hover:text-white transition-all text-sm">
-                            <span>🚚</span> Drivers & Schedules
+                            <span>🚚</span> {{ __('Drivers & Schedules') }}
                         </a>
                         <a href="#broadcaster" class="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-emerald-900 text-emerald-100 hover:text-white transition-all text-sm">
-                            <span>📢</span> Post Announcement
+                            <span>📢</span> {{ __('Post Announcement') }}
                         </a>
                     @elseif(Auth::user()->role === 'Driver')
                         <a href="{{ route('driver.portal') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-emerald-850 hover:bg-emerald-800 text-white font-semibold transition-all shadow-md {{ request()->routeIs('driver.portal') ? 'bg-emerald-800 border-l-4 border-amber-400' : 'opacity-85' }}">
-                            <span>🚚</span> {{ __('Driver') }} Portal
+                            <span>🚚</span> {{ __('Driver Portal') }}
                         </a>
                     @endif
                 @endauth
                 
-                <div class="text-[10px] font-bold tracking-wider text-emerald-500 uppercase px-4 pt-4 pb-1">Citizen Portal</div>
+                <div class="text-[10px] font-bold tracking-wider text-emerald-500 uppercase px-4 pt-4 pb-1">{{ __('Citizen Portal') }}</div>
                 <a href="{{ route('citizen.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-emerald-900 text-emerald-100 hover:text-white transition-all text-sm {{ request()->routeIs('citizen.dashboard') ? 'bg-emerald-800 border-l-4 border-amber-400 text-white' : '' }}">
-                    <span>🌐</span> Public Live Map
+                    <span>🌐</span> {{ __('Public Live Map') }}
                 </a>
             </nav>
         </div>
@@ -106,8 +106,8 @@
                     </form>
                 @else
                     <div>
-                        <p class="text-[10px] text-emerald-500 font-medium">Public Mode</p>
-                        <a href="{{ route('login') }}" class="text-xs font-bold text-amber-400 hover:underline">🔐 Staff Sign In</a>
+                        <p class="text-[10px] text-emerald-500 font-medium">{{ __('Public Mode') }}</p>
+                        <a href="{{ route('login') }}" class="text-xs font-bold text-amber-400 hover:underline">🔐 {{ __('Staff Sign In') }}</a>
                     </div>
                 @endauth
             </div>
@@ -120,7 +120,7 @@
         <header class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6 bg-white/70 border border-emerald-100 p-5 rounded-2xl shadow-sm backdrop-blur-md">
             <div>
                 <h1 class="text-xl md:text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2">
-                    <span class="text-emerald-600">♻️</span> @yield('dashboard-title', 'Smart Waste Logistics Node')
+                    <span class="text-emerald-600">♻️</span> @yield('dashboard-title', __('Smart Waste Logistics Node'))
                 </h1>
                 <p class="text-xs text-slate-400 mt-1">
                     🏛️ Ratnapura Municipal Council • රත්නපුර මහා නගර සභාව • Environment & Sanitation Division

@@ -1,0 +1,92 @@
+MISSING_TRANSLATION_KEYS: 42
+Admin Note:
+Anonymous Citizen
+Are you sure you want to delete this route? This will wipe associated logs.
+Check your submission status below. Come back tomorrow to submit another.
+Citizen report inbox is currently empty.
+Claim Pts:
+Click points on the map on the right to define the boundary vertices. A green polygon overlay will represent your active route path.
+Deploy now
+Describe what you recycled (e.g. 2kg plastic bottles, 3 cardboard boxes...)\nMin. 20 characters required.
+Documentation
+Double-click map
+Driver Portal
+Driver:
+Error
+Friday
+Hazardous
+Incident #
+Laracasts
+Laravel has an incredibly rich ecosystem. We suggest starting with the following.
+Let\
+Log in
+Log in as citizen to submit recycling claims.
+Monday
+No driver assignments logged yet.
+No recycling submissions in the queue yet.
+Organic
+Paper
+Plastic
+Provide street coordinates, landmarks, or details...
+Read the
+Register
+Saturday
+Submitted By:
+Sunday
+Thursday
+Today
+Tuesday
+Waste Category
+Watch video tutorials at
+Wednesday
+[]
+e.g. Zone Alpha - Town Center
+
+PLAIN_TEXTS:
+resources/views\admin\dashboard.blade.php:38:0 ? 'text-amber-600' : 'text-slate-800' }} mt-2">{{ $pendingRecyclingCount }}
+resources/views\admin\dashboard.blade.php:159:🍎 Organic
+resources/views\admin\dashboard.blade.php:161:🥤 Plastic
+resources/views\admin\dashboard.blade.php:163:📦 Paper
+resources/views\admin\dashboard.blade.php:165:⚠️ Hazardous
+resources/views\admin\dashboard.blade.php:329:Email
+resources/views\admin\dashboard.blade.php:330:Phone
+resources/views\admin\dashboard.blade.php:331:Action
+resources/views\admin\dashboard.blade.php:392:🏅 Claimed:
+resources/views\admin\dashboard.blade.php:491:All Statuses
+resources/views\admin\dashboard.blade.php:515:🗑️ Missed Pickup
+resources/views\admin\dashboard.blade.php:517:🚮 Illegal Dumping
+resources/views\admin\dashboard.blade.php:519:☢️ Hazardous Waste
+resources/views\admin\dashboard.blade.php:534:status == 'Open' ? 'selected' : '' }}>⏳ Open
+resources/views\admin\dashboard.blade.php:535:status == 'Investigating' ? 'selected' : '' }}>🔍 Investigating
+resources/views\admin\dashboard.blade.php:536:status == 'Resolved' ? 'selected' : '' }}>✅ Resolved
+resources/views\admin\dashboard.blade.php:538:← change to update
+resources/views\admin\dashboard.blade.php:545:View Photo
+resources/views\admin\dashboard.blade.php:548:No Photo
+resources/views\admin\dashboard.blade.php:574:Timestamp
+resources/views\admin\dashboard.blade.php:575:Event Action
+resources/views\admin\dashboard.blade.php:576:Authorized Agent
+resources/views\admin\dashboard.blade.php:577:Logged Record Reference
+resources/views\admin\dashboard.blade.php:594:No system events logged in audit table.
+resources/views\admin\dashboard.blade.php:644:Route:
+resources/views\app.blade.php:6:WMIS - @yield('role-title', 'Municipal Portal')
+resources/views\app.blade.php:47:Rathnapura
+resources/views\app.blade.php:89:getLocale() == 'en' ? 'bg-amber-400 text-emerald-950' : 'bg-emerald-900 text-emerald-300 hover:bg-emerald-800' }}">EN
+resources/views\app.blade.php:90:getLocale() == 'si' ? 'bg-amber-400 text-emerald-950' : 'bg-emerald-900 text-emerald-300 hover:bg-emerald-800' }}">සිංහල
+resources/views\app.blade.php:97:Signed in as:
+resources/views\app.blade.php:149:Please correct the following errors:
+resources/views\auth\login.blade.php:6:WMIS - Secure Authentication
+resources/views\auth\login.blade.php:53:ATI Ratnapura
+resources/views\auth\login.blade.php:54:HNDIT 4052 • Individual Programming Project
+resources/views\auth\login.blade.php:70:⚠️ {{ $error }}
+resources/views\citizen\dashboard.blade.php:64:⏳ Limit reached today
+resources/views\citizen\dashboard.blade.php:78:5 pts — Small batch (e.g. 1–2 items)
+resources/views\citizen\dashboard.blade.php:79:10 pts — Medium bag
+resources/views\citizen\dashboard.blade.php:80:20 pts — Full bin or multiple types
+resources/views\citizen\dashboard.blade.php:81:35 pts — Large scale / community effort
+resources/views\citizen\dashboard.blade.php:82:50 pts — Exceptional initiative
+resources/views\citizen\dashboard.blade.php:101:Your Recent Claims
+resources/views\citizen\dashboard.blade.php:286:Route:
+resources/views\citizen\dashboard.blade.php:324:🚚 Truck Active Duty
+resources/views\citizen\dashboard.blade.php:327:' + truck.waste_type + '
+resources/views\driver\dashboard.blade.php:45:📍 Coordinates: {{ round($coord['lat'], 4) }}, {{ round($coord['lng'], 4) }}
+resources/views\welcome.blade.php:18::not(:last-child)){--tw-space-x-reverse:0;margin-inline-start:calc(calc(var(--spacing)*1)*var(--tw-space-x-reverse));margin-inline-end:calc(calc(var(--spacing)*1)*calc(1 - var(--tw-space-x-reverse)))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:3.40282e38px}.rounded-sm{border-radius:var(--radius-sm)}.rounded-t-lg{border-top-left-radius:var(--radius-lg);border-top-right-radius:var(--radius-lg)}.rounded-br-lg{border-bottom-right-radius:var(--radius-lg)}.rounded-bl-lg{border-bottom-left-radius:var(--radius-lg)}.border{border-style:var(--tw-border-style);border-width:1px}.border-\[\#19140035\]{border-color:#19140035}.border-\[\#e3e3e0\]{border-color:#e3e3e0}.border-black{border-color:var(--color-black)}.border-transparent{border-color:#0000}.bg-\[\#1b1b18\]{background-color:#1b1b18}.bg-\[\#FDFDFC\]{background-color:#fdfdfc}.bg-\[\#dbdbd7\]{background-color:#dbdbd7}.bg-\[\#fff2f2\]{background-color:#fff2f2}.bg-white{background-color:var(--color-white)}.p-6{padding:calc(var(--spacing)*6)}.px-5{padding-inline:calc(var(--spacing)*5)}.py-1{padding-block:calc(var(--spacing)*1)}.py-1\.5{padding-block:calc(var(--spacing)*1.5)}.py-2{padding-block:calc(var(--spacing)*2)}.pb-12{padding-bottom:calc(var(--spacing)*12)}.text-sm{font-size:var(--text-sm);line-height:var(--tw-leading,var(--text-sm--line-height))}.text-\[13px\]{font-size:13px}.leading-\[20px\]{--tw-leading:20px;line-height:20px}.leading-normal{--tw-leading:var(--leading-normal);line-height:var(--leading-normal)}.font-medium{--tw-font-weight:var(--font-weight-medium);font-weight:var(--font-weight-medium)}.text-\[\#1b1b18\]{color:#1b1b18}.text-\[\#706f6c\]{color:#706f6c}.text-\[\#F53003\],.text-\[\#f53003\]{color:#f53003}.text-white{color:var(--color-white)}.underline{text-decoration-line:underline}.underline-offset-4{text-underline-offset:4px}.opacity-100{opacity:1}.shadow-\[0px_0px_1px_0px_rgba\(0\,0\,0\,0\.03\)\,0px_1px_2px_0px_rgba\(0\,0\,0\,0\.06\)\]{--tw-shadow:0px 0px 1px 0px var(--tw-shadow-color,#00000008),0px 1px 2px 0px var(--tw-shadow-color,#0000000f);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.shadow-\[inset_0px_0px_0px_1px_rgba\(26\,26\,0\,0\.16\)\]{--tw-shadow:inset 0px 0px 0px 1px var(--tw-shadow-color,#1a1a0029);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.\!filter{filter:var(--tw-blur,)var(--tw-brightness,)var(--tw-contrast,)var(--tw-grayscale,)var(--tw-hue-rotate,)var(--tw-invert,)var(--tw-saturate,)var(--tw-sepia,)var(--tw-drop-shadow,)!important}.filter{filter:var(--tw-blur,)var(--tw-brightness,)var(--tw-contrast,)var(--tw-grayscale,)var(--tw-hue-rotate,)var(--tw-invert,)var(--tw-saturate,)var(--tw-sepia,)var(--tw-drop-shadow,)}.transition-all{transition-property:all;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.transition-opacity{transition-property:opacity;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.delay-300{transition-delay:.3s}.duration-750{--tw-duration:.75s;transition-duration:.75s}.not-has-\[nav\]\:hidden:not(:has(:is(nav))){display:none}.before\:absolute:before{content:var(--tw-content);position:absolute}.before\:top-0:before{content:var(--tw-content);top:calc(var(--spacing)*0)}.before\:top-1\/2:before{content:var(--tw-content);top:50%}.before\:bottom-0:before{content:var(--tw-content);bottom:calc(var(--spacing)*0)}.before\:bottom-1\/2:before{content:var(--tw-content);bottom:50%}.before\:left-\[0\.4rem\]:before{content:var(--tw-content);left:.4rem}.before\:border-l:before{content:var(--tw-content);border-left-style:var(--tw-border-style);border-left-width:1px}.before\:border-\[\#e3e3e0\]:before{content:var(--tw-content);border-color:#e3e3e0}@media (hover:hover){.hover\:border-\[\#1915014a\]:hover{border-color:#1915014a}.hover\:border-\[\#19140035\]:hover{border-color:#19140035}.hover\:border-black:hover{border-color:var(--color-black)}.hover\:bg-black:hover{background-color:var(--color-black)}}@media (width>=64rem){.lg\:-mt-\[6\.6rem\]{margin-top:-6.6rem}.lg\:mb-0{margin-bottom:calc(var(--spacing)*0)}.lg\:mb-6{margin-bottom:calc(var(--spacing)*6)}.lg\:-ml-px{margin-left:-1px}.lg\:ml-0{margin-left:calc(var(--spacing)*0)}.lg\:block{display:block}.lg\:aspect-auto{aspect-ratio:auto}.lg\:w-\[438px\]{width:438px}.lg\:max-w-4xl{max-width:var(--container-4xl)}.lg\:grow{flex-grow:1}.lg\:flex-row{flex-direction:row}.lg\:justify-center{justify-content:center}.lg\:rounded-t-none{border-top-left-radius:0;border-top-right-radius:0}.lg\:rounded-tl-lg{border-top-left-radius:var(--radius-lg)}.lg\:rounded-r-lg{border-top-right-radius:var(--radius-lg);border-bottom-right-radius:var(--radius-lg)}.lg\:rounded-br-none{border-bottom-right-radius:0}.lg\:p-8{padding:calc(var(--spacing)*8)}.lg\:p-20{padding:calc(var(--spacing)*20)}}@media (prefers-color-scheme:dark){.dark\:block{display:block}.dark\:hidden{display:none}.dark\:border-\[\#3E3E3A\]{border-color:#3e3e3a}.dark\:border-\[\#eeeeec\]{border-color:#eeeeec}.dark\:bg-\[\#0a0a0a\]{background-color:#0a0a0a}.dark\:bg-\[\#1D0002\]{background-color:#1d0002}.dark\:bg-\[\#3E3E3A\]{background-color:#3e3e3a}.dark\:bg-\[\#161615\]{background-color:#161615}.dark\:bg-\[\#eeeeec\]{background-color:#eeeeec}.dark\:text-\[\#1C1C1A\]{color:#1c1c1a}.dark\:text-\[\#A1A09A\]{color:#a1a09a}.dark\:text-\[\#EDEDEC\]{color:#ededec}.dark\:text-\[\#F61500\]{color:#f61500}.dark\:text-\[\#FF4433\]{color:#f43}.dark\:shadow-\[inset_0px_0px_0px_1px_\#fffaed2d\]{--tw-shadow:inset 0px 0px 0px 1px var(--tw-shadow-color,#fffaed2d);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.dark\:before\:border-\[\#3E3E3A\]:before{content:var(--tw-content);border-color:#3e3e3a}@media (hover:hover){.dark\:hover\:border-\[\#3E3E3A\]:hover{border-color:#3e3e3a}.dark\:hover\:border-\[\#62605b\]:hover{border-color:#62605b}.dark\:hover\:border-white:hover{border-color:var(--color-white)}.dark\:hover\:bg-white:hover{background-color:var(--color-white)}}}@starting-style{.starting\:translate-y-4{--tw-translate-y:calc(var(--spacing)*4);translate:var(--tw-translate-x)var(--tw-translate-y)}}@starting-style{.starting\:translate-y-6{--tw-translate-y:calc(var(--spacing)*6);translate:var(--tw-translate-x)var(--tw-translate-y)}}@starting-style{.starting\:opacity-0{opacity:0}}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes ping{75%,to{opacity:0;transform:scale(2)}}@keyframes pulse{50%{opacity:.5}}@keyframes bounce{0%,to{animation-timing-function:cubic-bezier(.8,0,1,1);transform:translateY(-25%)}50%{animation-timing-function:cubic-bezier(0,0,.2,1);transform:none}}@property --tw-translate-x{syntax:"*";inherits:false;initial-value:0}@property --tw-translate-y{syntax:"*";inherits:false;initial-value:0}@property --tw-translate-z{syntax:"*";inherits:false;initial-value:0}@property --tw-rotate-x{syntax:"*";inherits:false;initial-value:rotateX(0)}@property --tw-rotate-y{syntax:"*";inherits:false;initial-value:rotateY(0)}@property --tw-rotate-z{syntax:"*";inherits:false;initial-value:rotateZ(0)}@property --tw-skew-x{syntax:"*";inherits:false;initial-value:skewX(0)}@property --tw-skew-y{syntax:"*";inherits:false;initial-value:skewY(0)}@property --tw-space-x-reverse{syntax:"*";inherits:false;initial-value:0}@property --tw-border-style{syntax:"*";inherits:false;initial-value:solid}@property --tw-leading{syntax:"*";inherits:false}@property --tw-font-weight{syntax:"*";inherits:false}@property --tw-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-shadow-color{syntax:"*";inherits:false}@property --tw-inset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-shadow-color{syntax:"*";inherits:false}@property --tw-ring-color{syntax:"*";inherits:false}@property --tw-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-ring-color{syntax:"*";inherits:false}@property --tw-inset-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-ring-inset{syntax:"*";inherits:false}@property --tw-ring-offset-width{syntax:"
