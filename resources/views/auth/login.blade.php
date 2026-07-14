@@ -26,6 +26,8 @@
             document.getElementById('password-input').value = password;
         }
     </script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-emerald-50/50 min-h-screen flex items-center justify-center p-4 antialiased">
 
@@ -62,15 +64,29 @@
                 <p class="text-slate-400 text-xs mt-1">{{ __('Please enter your authorized municipal credentials.') }}</p>
             </div>
 
-            <!-- Error handling -->
+            <!-- Error handling using SweetAlert2 -->
             @if ($errors->any())
-                <div class="bg-rose-50 border-l-4 border-rose-500 p-4 mb-6 rounded-r-xl">
-                    <div class="text-xs font-semibold text-rose-700 space-y-1">
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        let errorHtml = '<ul class="text-left text-sm text-rose-600 list-disc list-inside space-y-1">';
                         @foreach ($errors->all() as $error)
-                            <p>⚠️ {{ $error }}</p>
+                            errorHtml += '<li>{{ $error }}</li>';
                         @endforeach
-                    </div>
-                </div>
+                        errorHtml += '</ul>';
+
+                        Swal.fire({
+                            title: 'Access Denied',
+                            html: errorHtml,
+                            icon: 'error',
+                            confirmButtonColor: '#059669', // Emerald 600
+                            background: '#f8fafc',
+                            customClass: {
+                                popup: 'rounded-2xl shadow-xl border border-rose-100',
+                                title: 'text-rose-800 font-sans font-black',
+                            }
+                        });
+                    });
+                </script>
             @endif
 
             <form action="{{ url('/login') }}" method="POST" class="space-y-5">

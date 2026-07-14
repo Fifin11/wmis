@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(function () {
 
         // Incident Report Status Management
         Route::post('/admin/reports/{id}/status', [AdminController::class, 'updateReportStatus'])->name('admin.reports.status');
+        
+        // Data Exports
+        Route::get('/admin/export/reports/csv', [AdminController::class, 'exportReportsCsv'])->name('admin.export.reports.csv');
+        Route::get('/admin/export/reports/print', [AdminController::class, 'exportReportsPrint'])->name('admin.export.reports.print');
     });
 
     // Driver Group Protection

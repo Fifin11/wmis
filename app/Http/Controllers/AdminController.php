@@ -7,6 +7,8 @@ use App\Models\CitizenReport;
 use App\Models\RecyclingSubmission;
 use App\Models\RecyclingLeaderboard;
 use App\Models\SystemLog;
+use App\Http\Requests\StoreDriverRequest;
+use App\Http\Requests\UpdateReportStatusRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,19 +23,8 @@ class AdminController extends Controller
      * Store a new driver account (FR-ADM: Driver Registration).
      * Only admin can create driver accounts from the portal.
      */
-    public function storeDriver(Request $request)
+    public function storeDriver(StoreDriverRequest $request)
     {
-        $request->validate([
-            'name'     => 'required|string|max:255|min:3',
-            'email'    => 'required|email|unique:users,email',
-            'phone'    => 'nullable|string|max:20|regex:/^\+?[0-9\s\-\(\)]{7,20}$/',
-            'password' => 'required|string|min:8|confirmed|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/',
-        ], [
-            'phone.regex' => 'Phone number format is invalid. Example: +94 71 123 4567',
-            'password.regex' => 'Password must contain at least one uppercase letter, one lowercase letter, and one number.',
-            'email.unique' => 'A driver with this email already exists.',
-        ]);
-
         $driver = User::create([
             'name'     => $request->name,
             'email'    => $request->email,
@@ -172,12 +163,8 @@ class AdminController extends Controller
     /**
      * Update the status of a citizen incident report.
      */
-    public function updateReportStatus(Request $request, $id)
+    public function updateReportStatus(UpdateReportStatusRequest $request, $id)
     {
-        $request->validate([
-            'status' => 'required|in:Open,Investigating,Resolved',
-        ]);
-
         $report = CitizenReport::findOrFail($id);
         $oldStatus = $report->status;
 
@@ -193,5 +180,65 @@ class AdminController extends Controller
         ]);
 
         return redirect()->back()->with('success', "Incident Report #$id status updated to '{$request->status}'.");
+    }
+
+    // Export Incident Reports to CSV
+    public function exportReportsCsv()
+    {
+        $fileName = 'citizen_reports_export_' . date('Y_m_d_His') . '.csv';
+        $reports = CitizenReport::with('citizen')->get();
+
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = ['ID', 'Citizen Name', 'Issue Type', 'Status', 'Date Reported'];
+
+        $callback = function() use($reports, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($reports as $report) {
+                $row['ID']  = $report->id;
+                $row['Citizen Name'] = $report->citizen ? $report->citizen->name : 'Anonymous';
+                $row['Issue Type'] = $report->issue_type;
+                $row['Status']  = $report->status;
+                $row['Date Reported']  = $report->created_at->format('Y-m-d H:i');
+
+                fputcsv($file, array($row['ID'], $row['Citizen Name'], $row['Issue Type'], $row['Status'], $row['Date Reported']));
+            }
+
+            fclose($file);
+        };
+
+        // Audit log action
+        SystemLog::create([
+            'user_id' => Auth::id(),
+            'action' => 'Export Reports CSV',
+            'entity_type' => 'CitizenReport',
+            'entity_id' => 0,
+        ]);
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    // Export Incident Reports to Print (PDF alternative)
+    public function exportReportsPrint()
+    {
+        $reports = CitizenReport::with('citizen')->latest()->get();
+
+        // Audit log action
+        SystemLog::create([
+            'user_id' => Auth::id(),
+            'action' => 'Print Reports',
+            'entity_type' => 'CitizenReport',
+            'entity_id' => 0,
+        ]);
+
+        return view('admin.exports.reports_print', compact('reports'));
     }
 }

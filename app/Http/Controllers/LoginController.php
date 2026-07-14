@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
@@ -14,13 +15,10 @@ class LoginController extends Controller
     }
 
     // 2. Process the Login Authentication Attempt
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        // Validate that the user typed in both inputs
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        // Credentials have already been validated by LoginRequest
+        $credentials = $request->only('email', 'password');
 
         // Attempt to match credentials and log the user in
         if (Auth::attempt($credentials)) {

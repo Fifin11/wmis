@@ -180,7 +180,13 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="py-6 text-center text-slate-400">{{ __('No active routes defined. Use the drawing tool above to add ones.') }}</td>
+                                <td colspan="5" class="py-12 text-center">
+                                    <div class="flex flex-col items-center justify-center space-y-3">
+                                        <div class="text-5xl opacity-50 mb-2">🗺️</div>
+                                        <p class="text-sm font-semibold text-slate-500">{{ __('No active routes defined.') }}</p>
+                                        <p class="text-xs text-slate-400">{{ __('Use the drawing tool above to add your first collection route.') }}</p>
+                                    </div>
+                                </td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -350,7 +356,13 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="py-6 text-center text-slate-400">{{ __('No drivers registered. Add one using the form on the left.') }}</td>
+                                <td colspan="4" class="py-12 text-center">
+                                    <div class="flex flex-col items-center justify-center space-y-3">
+                                        <div class="text-5xl opacity-50 mb-2">🧑‍✈️</div>
+                                        <p class="text-sm font-semibold text-slate-500">{{ __('No drivers registered.') }}</p>
+                                        <p class="text-xs text-slate-400">{{ __('Add a new driver using the registration form to start assigning routes.') }}</p>
+                                    </div>
+                                </td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -428,7 +440,11 @@
                     @endif
                 </div>
             @empty
-                <div class="text-center py-8 text-slate-400 text-sm">{{ __('No recycling submissions in the queue yet.') }}</div>
+                <div class="py-16 text-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 flex flex-col items-center justify-center mt-4">
+                    <div class="text-5xl opacity-50 mb-3">🌱</div>
+                    <h3 class="text-base font-bold text-slate-600 mb-1">{{ __('Queue is Empty') }}</h3>
+                    <p class="text-xs text-slate-400 max-w-xs">{{ __('There are currently no pending recycling submissions awaiting your review.') }}</p>
+                </div>
             @endforelse
         </div>
     </div>
@@ -482,9 +498,19 @@
         <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm lg:col-span-2 flex flex-col justify-between">
             <div>
                 <div class="flex items-center justify-between gap-2 mb-4 border-b border-slate-100 pb-3">
-                    <h2 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
-                        <span class="text-emerald-600">🚨</span> Citizen Incident Inbox
-                    </h2>
+                    <div class="flex items-center gap-4">
+                        <h2 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
+                            <span class="text-emerald-600">🚨</span> Citizen Incident Inbox
+                        </h2>
+                        <div class="flex gap-2">
+                            <a href="{{ route('admin.export.reports.csv') }}" class="px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-[10px] font-black uppercase tracking-widest rounded-lg flex items-center gap-1 transition-colors">
+                                📥 CSV
+                            </a>
+                            <a href="{{ route('admin.export.reports.print') }}" target="_blank" class="px-3 py-1.5 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 text-[10px] font-black uppercase tracking-widest rounded-lg flex items-center gap-1 transition-colors">
+                                🖨️ PDF / Print
+                            </a>
+                        </div>
+                    </div>
                     <!-- Search and Filter -->
                     <form method="GET" class="flex gap-2">
                         <select name="report_status" class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600">

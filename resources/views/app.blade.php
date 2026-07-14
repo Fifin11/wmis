@@ -30,10 +30,20 @@
         .eco-gradient {
             background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
         }
+        /* Mobile responsive tables */
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
     </style>
     <!-- Leaflet.js Assets (Loaded globally for maps) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-emerald-50/40 text-slate-800 font-sans flex flex-col md:flex-row min-h-screen">
 
@@ -134,27 +144,44 @@
             </div>
         </header>
 
-        <!-- Dynamic Success/Error Alerts -->
-        @if(session('success'))
-            <div class="bg-emerald-50 border-l-4 border-emerald-600 text-emerald-900 p-4 rounded-r-xl mb-6 shadow-sm flex items-center gap-3 animate-fadeIn">
-                <span class="text-lg">🌿</span>
-                <span class="text-sm font-medium">{{ session('success') }}</span>
-            </div>
-        @endif
+        <!-- Dynamic Success/Error Alerts using SweetAlert2 -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                @if(session('success'))
+                    Swal.fire({
+                        title: 'Success!',
+                        text: "{{ session('success') }}",
+                        icon: 'success',
+                        confirmButtonColor: '#10b981',
+                        background: '#f8fafc',
+                        customClass: {
+                            popup: 'rounded-2xl shadow-xl border border-emerald-100',
+                            title: 'text-emerald-800 font-sans',
+                        }
+                    });
+                @endif
 
-        @if($errors->any())
-            <div class="bg-rose-50 border-l-4 border-rose-500 text-rose-900 p-4 rounded-r-xl mb-6 shadow-sm animate-fadeIn">
-                <div class="flex items-center gap-3 mb-1">
-                    <span class="text-lg">⚠️</span>
-                    <span class="text-sm font-bold">Please correct the following errors:</span>
-                </div>
-                <ul class="list-disc list-inside text-xs space-y-0.5 ml-8 text-rose-700">
+                @if($errors->any())
+                    let errorHtml = '<ul class="text-left text-sm text-rose-600 list-disc list-inside">';
                     @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        errorHtml += '<li>{{ $error }}</li>';
                     @endforeach
-                </ul>
-            </div>
-        @endif
+                    errorHtml += '</ul>';
+
+                    Swal.fire({
+                        title: 'Validation Error',
+                        html: errorHtml,
+                        icon: 'error',
+                        confirmButtonColor: '#e11d48',
+                        background: '#f8fafc',
+                        customClass: {
+                            popup: 'rounded-2xl shadow-xl border border-rose-100',
+                            title: 'text-rose-800 font-sans',
+                        }
+                    });
+                @endif
+            });
+        </script>
 
         <!-- Yield View Content -->
         <div class="flex-1">
@@ -162,5 +189,28 @@
         </div>
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Global Form Submit Loading State
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = `<span class="flex items-center justify-center gap-2">
+                            <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Loading...
+                        </span>`;
+                        submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

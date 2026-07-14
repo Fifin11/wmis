@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Route extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = ['route_name', 'waste_type', 'scheduled_day', 'zone_coordinates'];
 
     protected $casts = [
