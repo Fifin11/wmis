@@ -277,8 +277,8 @@
                         @forelse($assignments as $assignment)
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-150 flex items-center justify-between text-xs hover:border-emerald-500/35 transition-all">
                                 <div>
-                                    <h4 class="font-bold text-slate-800">{{ $assignment->route->route_name }}</h4>
-                                    <p class="text-[10px] text-slate-500 mt-0.5">{{ __('Driver:') }} {{ $assignment->driver->name }}</p>
+                                    <h4 class="font-bold text-slate-800">{{ $assignment->route?->route_name ?? __('Archived Route') }}</h4>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">{{ __('Driver:') }} {{ $assignment->driver?->name ?? __('Archived Driver') }}</p>
                                 </div>
                                 <span class="px-2 py-1 bg-white border border-slate-200 rounded-lg text-[9px] font-black text-slate-600">{{ $assignment->assigned_date }}</span>
                             </div>
@@ -450,7 +450,7 @@
                 <div class="p-4 rounded-2xl border {{ $sub->status === 'Pending' ? 'border-amber-200 bg-amber-50/30' : ($sub->status === 'Approved' ? 'border-emerald-200 bg-emerald-50/20' : 'border-slate-200 bg-slate-50') }} flex flex-col sm:flex-row justify-between gap-4">
                     <div class="space-y-1.5 flex-1">
                         <div class="flex items-center gap-2 flex-wrap">
-                            <span class="text-xs font-black text-slate-700">{{ $sub->citizen->name }}</span>
+                            <span class="text-xs font-black text-slate-700">{{ $sub->citizen?->name }}</span>
                             <span class="text-[9px] text-slate-400">Ref: #{{ $sub->id }}</span>
                             <span class="px-2 py-0.5 text-[9px] font-black rounded-full uppercase
                                 {{ $sub->status === 'Pending' ? 'bg-amber-100 text-amber-800 border border-amber-300/60' : ($sub->status === 'Approved' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600') }}">
@@ -462,7 +462,7 @@
                             <span>🏅 Claimed: <strong>{{ $sub->claimed_points }} eco-points</strong></span>
                             <span>📅 Submitted: {{ $sub->created_at->diffForHumans() }}</span>
                             @if($sub->reviewed_at)
-                                <span>👤 Reviewed by: {{ $sub->reviewer->name ?? 'System' }} · {{ $sub->reviewed_at->diffForHumans() }}</span>
+                                <span>👤 Reviewed by: {{ $sub->reviewer?->name ?? 'System' }} · {{ $sub->reviewed_at->diffForHumans() }}</span>
                             @endif
                         </div>
                         @if($sub->admin_note)
@@ -603,7 +603,7 @@
                                         <span class="px-2 py-0.5 rounded text-[9px] font-black uppercase text-red-800 bg-red-50 border border-red-200/50">☢️ Hazardous Waste</span>
                                     @endif
                                 </div>
-                                <h4 class="font-bold text-slate-800 text-sm">{{ __('Submitted By:') }} {{ $report->citizen->name ?? __('Anonymous Citizen') }}</h4>
+                                <h4 class="font-bold text-slate-800 text-sm">{{ __('Submitted By:') }} {{ $report->citizen?->name ?? __('Anonymous Citizen') }}</h4>
                                 <p class="text-xs text-slate-500 leading-normal">{{ $report->description ?? 'No description details provided.' }}</p>
                                 <div class="text-[10px] text-slate-400 flex flex-wrap gap-x-4 gap-y-1">
                                     <span>📍 Coords: {{ $report->location_lat }}, {{ $report->location_lng }}</span>
@@ -670,7 +670,7 @@
                                     {{ $log->action }}
                                 </span>
                             </td>
-                            <td class="py-3 px-4 text-xs font-semibold text-slate-650">{{ $log->user->name ?? 'System Process' }}</td>
+                            <td class="py-3 px-4 text-xs font-semibold text-slate-650">{{ $log->user?->name ?? 'System Process' }}</td>
                             <td class="py-3 px-4 text-xs font-mono">{{ $log->entity_type }} [ID: {{ $log->entity_id }}]</td>
                         </tr>
                     @empty
