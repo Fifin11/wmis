@@ -171,7 +171,7 @@
                                     <form action="{{ route('admin.routes.destroy', $route->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('{{ __('Are you sure you want to delete this route? This will wipe associated logs.') }}')" 
+                                        <button type="submit" onclick="return confirm('{{ __('Are you sure you want to archive this route? (It will be preserved in the database via Soft Deletes)') }}')" 
                                             class="text-xs font-bold text-rose-600 hover:text-rose-800 hover:underline">
                                             🗑️ Remove
                                         </button>
@@ -196,6 +196,35 @@
             <div class="mt-4 flex justify-center">
                 {{ $routes->appends(request()->query())->links() }}
             </div>
+
+            <!-- Archived Routes -->
+            @if(count($archivedRoutes) > 0)
+            <div class="mt-6 border-t border-slate-100 pt-4">
+                <details class="group">
+                    <summary class="text-xs font-bold text-slate-500 cursor-pointer hover:text-emerald-600 transition-colors flex items-center gap-2">
+                        <span>▶</span> {{ __('View Archived Routes') }} ({{ count($archivedRoutes) }})
+                    </summary>
+                    <div class="mt-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
+                        <table class="w-full text-left text-[11px] text-slate-500">
+                            <tbody>
+                                @foreach($archivedRoutes as $archivedRoute)
+                                    <tr class="border-b border-slate-200/50 last:border-0">
+                                        <td class="py-2 px-2 font-bold">{{ $archivedRoute->route_name }}</td>
+                                        <td class="py-2 px-2 text-slate-400">Archived on {{ $archivedRoute->deleted_at->format('Y-m-d') }}</td>
+                                        <td class="py-2 px-2 text-right">
+                                            <form action="{{ route('admin.routes.restore', $archivedRoute->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" class="text-emerald-600 hover:underline font-bold">♻️ Restore</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            </div>
+            @endif
         </div>
 
         <!-- Driver Assignment Panel -->
@@ -347,7 +376,7 @@
                                     <form action="{{ route('admin.drivers.destroy', $driver->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('{{ __('Remove driver :name? This will also delete their trip logs and assignments.', ['name' => $driver->name]) }}')"
+                                        <button type="submit" onclick="return confirm('{{ __('Remove driver :name? (Their historical data will be preserved via Soft Deletes)', ['name' => $driver->name]) }}')"
                                             class="text-xs font-bold text-rose-600 hover:text-rose-800 hover:underline">
                                             🗑️ {{ __('Remove') }}
                                         </button>
@@ -372,6 +401,35 @@
             <div class="mt-4 flex justify-center">
                 {{ $drivers->appends(request()->query())->links() }}
             </div>
+
+            <!-- Archived Drivers -->
+            @if(count($archivedDrivers) > 0)
+            <div class="mt-6 border-t border-slate-100 pt-4">
+                <details class="group">
+                    <summary class="text-xs font-bold text-slate-500 cursor-pointer hover:text-emerald-600 transition-colors flex items-center gap-2">
+                        <span>▶</span> {{ __('View Archived Drivers') }} ({{ count($archivedDrivers) }})
+                    </summary>
+                    <div class="mt-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
+                        <table class="w-full text-left text-[11px] text-slate-500">
+                            <tbody>
+                                @foreach($archivedDrivers as $archivedDriver)
+                                    <tr class="border-b border-slate-200/50 last:border-0">
+                                        <td class="py-2 px-2 font-bold">{{ $archivedDriver->name }}</td>
+                                        <td class="py-2 px-2 text-slate-400">{{ $archivedDriver->email }}</td>
+                                        <td class="py-2 px-2 text-right">
+                                            <form action="{{ route('admin.drivers.restore', $archivedDriver->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" class="text-emerald-600 hover:underline font-bold">♻️ Restore</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            </div>
+            @endif
         </div>
 
     </div>

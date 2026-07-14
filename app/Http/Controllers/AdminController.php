@@ -63,7 +63,27 @@ class AdminController extends Controller
 
         $driver->delete();
 
-        return redirect()->back()->with('success', "Driver '{$driver->name}' has been removed from the system.");
+        return redirect()->back()->with('success', "Driver '{$driver->name}' has been archived.");
+    }
+
+    /**
+     * Restore a deleted driver account.
+     */
+    public function restoreDriver($id)
+    {
+        $driver = User::onlyTrashed()->where('id', $id)->where('role', 'Driver')->firstOrFail();
+
+        $driver->restore();
+
+        SystemLog::create([
+            'user_id'     => Auth::id(),
+            'action'      => 'Restore Driver Account',
+            'entity_type' => 'User',
+            'entity_id'   => $driver->id,
+            'new_values'  => ['name' => $driver->name, 'email' => $driver->email],
+        ]);
+
+        return redirect()->back()->with('success', "Driver '{$driver->name}' has been restored successfully.");
     }
 
     // ─────────────────────────────────────────────

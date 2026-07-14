@@ -57,6 +57,10 @@ class RouteController extends Controller
             ->latest()
             ->get();
 
+        // Archived Data for Restoration
+        $archivedRoutes = Route::onlyTrashed()->get();
+        $archivedDrivers = User::onlyTrashed()->where('role', 'Driver')->get();
+
         return view('admin.dashboard', compact(
             'totalRoutes',
             'totalReports',
@@ -68,6 +72,8 @@ class RouteController extends Controller
             'systemLogs',
             'assignments',
             'recyclingSubmissions',
+            'archivedRoutes',
+            'archivedDrivers',
             'request'
         ));
     }
@@ -141,7 +147,24 @@ class RouteController extends Controller
         ]);
 
         $route->delete();
-        return redirect()->back()->with('success', 'Route deleted successfully.');
+        return redirect()->back()->with('success', 'Route archived successfully.');
+    }
+
+    // CRUD: Restore route
+    public function restore($id)
+    {
+        $route = Route::onlyTrashed()->findOrFail($id);
+        $route->restore();
+
+        SystemLog::create([
+            'user_id' => Auth::id(),
+            'action' => 'Restore Route',
+            'entity_type' => 'Route',
+            'entity_id' => $route->id,
+            'new_values' => $route->toArray(),
+        ]);
+
+        return redirect()->back()->with('success', 'Route restored successfully.');
     }
 
     // Assignment: Assign driver to route

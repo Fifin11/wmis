@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/dashboard', [RouteController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/admin/routes', [RouteController::class, 'store'])->name('admin.routes.store');
         Route::delete('/admin/routes/{id}', [RouteController::class, 'destroy'])->name('admin.routes.destroy');
+        Route::post('/admin/routes/{id}/restore', [RouteController::class, 'restore'])->name('admin.routes.restore');
         Route::post('/admin/routes/assign', [RouteController::class, 'assignDriver'])->name('admin.routes.assign');
 
         // Announcement Management
@@ -43,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
         // Driver Account Management
         Route::post('/admin/drivers', [AdminController::class, 'storeDriver'])->name('admin.drivers.store');
         Route::delete('/admin/drivers/{id}', [AdminController::class, 'destroyDriver'])->name('admin.drivers.destroy');
+        Route::post('/admin/drivers/{id}/restore', [AdminController::class, 'restoreDriver'])->name('admin.drivers.restore');
 
         // Recycling Submission Moderation
         Route::post('/admin/recycling/{id}/approve', [AdminController::class, 'approveRecycling'])->name('admin.recycling.approve');
