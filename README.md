@@ -1,59 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Smart Municipal Waste Logistics & Citizen Engagement System (WMIS)
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
 </p>
 
-## About Laravel
+An automated web-based platform designed to streamline municipal waste collection schedules and enhance real-time communication between local authorities and residents.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎓 Project Details
+- **Course:** HNDIT4052 Programming Individual Project
+- **Institution:** SLIATE - Advanced Technological Institute Rathnapura, Department of Information Technology
+- **Developer:** D.G.D.D. Dasanayaka (RAT/IT/2324/F/0017)
+- **Supervisor:** Mr. G.S.T. Bandara
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🌟 About The Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Urbanization and population growth in Sri Lanka have led to a significant increase in municipal solid waste. Currently, most municipal councils operate on a fixed weekly schedule. However, the lack of real-time visibility between the "Town Hall" and the residents causes waste to be left on the streets for extended periods.
 
-## Learning Laravel
+This project introduces a centralized, web-based platform built with the Laravel MVC architecture to address these logistical challenges. It digitizes the communication loop between municipal employees and the public, replacing the current "guesswork" of waste collection with data-driven transparency.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🚀 Key Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+*   **Administration Module:** Allows town hall officials to digitize the weekly waste schedule, manage the fleet of drivers, moderate recycling submissions, and post real-time announcements.
+*   **Driver & Employee Portal:** A mobile-responsive interface where drivers can "check-in" to a route, mark departure times, and update the status of specific pickup points as they are completed.
+*   **Citizen Engagement Dashboard:** A user-facing portal where residents can view the live status of the collection truck (powered by Leaflet.js).
+*   **Bilingual Support (i18n):** The system interface is fully supported in both English and Sinhala to ensure the platform is accessible to all members of the local community.
+*   **Gamified Recycling Module:** Citizens can submit recycling claims to earn eco-points on a leaderboard, motivating sustainable behavior.
 
-## Laravel Sponsors
+## 🛠️ Built With
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+*   **Backend:** PHP 8.3+, Laravel (MVC Architecture)
+*   **Database:** MySQL / SQLite
+*   **Frontend:** HTML5, CSS3, Blade Templating
+*   **Mapping API:** Leaflet.js (for real-time route visualization)
+*   **Environment:** Local development using XAMPP (Apache/MariaDB)
 
-### Premium Partners
+## 📦 Setup & Installation
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. Clone the repository and navigate to the project root (`wmis`).
+2. Install PHP dependencies:
+   ```bash
+   composer install
+   ```
+3. Install JavaScript dependencies and compile assets:
+   ```bash
+   npm install
+   npm run build
+   ```
+4. Copy the environment file and generate an app key:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+5. Configure your database in the `.env` file (e.g., set `DB_CONNECTION=mysql` or use `sqlite`).
+6. Run the database migrations and seeders (populates dummy data for the presentation!):
+   ```bash
+   php artisan migrate --seed
+   ```
+7. Start the local development server:
+   ```bash
+   php artisan serve
+   ```
+8. Visit `http://localhost:8000` in your browser.
 
-## Contributing
+## 🔒 User Roles & Access
+The application uses role-based access control. Refer to the seeders to log into the different dashboards:
+- **Admin:** Has full access to route management and driver assignments.
+- **Driver:** Accesses the driver portal to start/complete routes.
+- **Citizen:** Accesses the public dashboard to view live trucks and submit reports.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📄 License
+This project was developed for educational purposes as part of the HNDIT curriculum.
